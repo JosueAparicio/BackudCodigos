@@ -71,7 +71,7 @@ class alquiler{
 
     public function buscarAlquiler($valor=''){
         $this->bd->consultas('
-            SELECT cl.nombre, pe.nombre, al.fechaPrestamo, al.fechaDevolucion, al.valor
+            SELECT cl.descripcion, pe.nombre, al.fechaPrestamo, al.fechaDevolucion, al.valor
             FROM alquiler al, clientes cl, peliculas pe
             WHERE al.idCliente=cl.idCliente AND al.idPelicula=pe.idPelicula AND
             cl.nombre LIKE "%'.$valor.'%" OR pe.nombre LIKE "%'.$valor.'%"
