@@ -87,6 +87,21 @@ class alquiler{
         ');
         $this->respuesta['msg']="Registro Eliminado con Exito";
     }
+
+
+    public function traer_datos_clientes(){
+        $this->db->consultas('SELECT * FROM clientes');
+        $Clientes = $this->db->obtener_data();
+        $imprimirClientes = [];
+        $imprimirClientesIDs = [];
+        for ($i=0; $i < count($Clientes); $i++) { 
+            $imprimirClientes[] = $Clientes[$i]['nombre'];
+            $imprimirClientesIDs[] = $Clientes[$i]['idCliente'];
+        }
+        // echo json_encode($imprimirAgregarServicios);
+
+        return $this->respuesta = ['Clientes'=>$imprimirClientes, 'ClientesID'=>$imprimirClientesIDs ];//array de php en v7+
+    }
 }
 
 ?>

@@ -1,43 +1,39 @@
-<form v-on:submit.prevent="guardarMateria" data-accion="nuevo" data-idmateria='' id="frm-materia" method="POST">
-    <div class="card text-white bg-secondary mb-3" style="max-width: 24rem;">
+<form v-on:submit.prevent="guardarAlquiler" data-accion="nuevo" data-idalquiler='' id="frm-alquiler" method="POST">
+    <div class="card text-white bg-dark mb-3" style="max-width: 24rem;">
 
         <div class="card-header">
-            MANTENIMIENTO DE MATERIAS
+            MANTENIMIENTO DE ALQUILERES
 
-            <button type="button" id="btn-close-materias" class="close" aria-label="Close">
+            <button type="button" id="btn-close-alquiler" class="close" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
 
-        <div class="card-body">
-            <div class="row row-cols-1 p-2">
-                <div class="row-col">
-                    <div class="col">
-                        CODIGO:
-                    </div>
-                    <div class="col">
-                        <input type="text" required v-model="materia.codigo" placeholder="XXXX0000" class="form-control">
-                    </div>
-                </div>
+        <div class="row p-2">
+            <div class="col-4">
+                CLIENTES
             </div>
-            <div class="row row-cols-1 p-2">
-                <div class="row-col">
-                    <div class="col">
-                        NOMBRE:
-                    </div>
-                    <div class="col">
-                        <input type="text" required v-model="materia.nombre" placeholder="AAAAAAA" class="form-control">
-                    </div>
+            <div class="col-8">
+                <v-select v-model="Alquiler.Cliente" :options="Cliente"></v-select>
+            </div>
+        </div>
+
+            <div class="row p-2">
+                <div class="col-4">
+                    PELICULAS
+                </div>
+                <div class="col-8">
+                    <v-select v-model="Alquiler.Pelicula" :options="Pelicula"></v-select>
                 </div>
             </div>
 
-            <div class="row row-cols-1 p-2">
+            <div class="row row-cols-1">
                 <div class="row-col">
                     <div class="col">
-                        CARRERA:
+                        F Devolucion:
                     </div>
                     <div class="col">
-                        <input type="text" required v-model="materia.carrera" placeholder="aaaaaaa....."
+                        <input type="date" required v-model="Alquiler.Fdevolucion" 
                             class="form-control">
                     </div>
                 </div>
@@ -46,10 +42,10 @@
             <div class="row row-cols-1">
                 <div class="row-col">
                     <div class="col">
-                        CICLO:
+                        $ Valor USD:
                     </div>
                     <div class="col">
-                        <input type="text" required v-model="materia.ciclo" placeholder="IV"
+                        <input type="text" required v-model="Alquiler.valor" placeholder="2" 
                             class="form-control">
                     </div>
                 </div>
@@ -70,11 +66,11 @@
             <div class="row row-cols-1 p-2">
                 <div class="row-col text-center">
                     <div class="alert alert-success" role="alert">
-                        {{ materia.msg }}
+                        {{ Alquiler.msg }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </form>
-<script src="public/vistas/materias/materias.js"></script>
+<script src="public/vistas/alquiler/alquiler.js"></script>

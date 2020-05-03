@@ -1,19 +1,19 @@
 var appmateria = new Vue({
-    el: '#frm-materia',
+    el: '#frm-alquiler',
     data: {
-        materia: {
-            idmateria: 0,
+        Alquiler: {
+            idalquiler: 0,
             accion: 'nuevo',
-            codigo: '',
-            nombre: '',
-            carrera: '',
-            ciclo: '',
+            Cliente: '',
+            Pelicula: '',
+            Fdevolucion: '',
+            valor: '',
             msg: ''
         }
     },
     methods: {
-        guardarMateria: function () {
-            fetch(`private/modulos/materias/procesos.php?proceso=recibirDatos&materia=${JSON.stringify(this.materia)}`).then(resp => resp.json()).then(resp => {
+        guardarAlquiler: function () {
+            fetch(`private/modulos/alquiler/procesos.php?proceso=recibirDatos&materia=${JSON.stringify(this.materia)}`).then(resp => resp.json()).then(resp => {
                 this.materia.msg = resp.msg;
                 this.materia.idmateria = 0;
                 this.materia.codigo = '';

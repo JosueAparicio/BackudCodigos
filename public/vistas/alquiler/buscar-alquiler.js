@@ -1,5 +1,5 @@
 var appBuscarMateria = new Vue({
-    el: '#frm-buscar-materias',
+    el: '#frm-buscar-alquiler',
     data: {
         mismaterias: [],
         valor: ''
