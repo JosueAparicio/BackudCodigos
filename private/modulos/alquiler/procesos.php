@@ -74,7 +74,7 @@ class alquiler{
         SELECT alquiler.idAlquiler, clientes.nombreC, peliculas.nombre, alquiler.fechaPrestamo, alquiler.fechaDevolucion, alquiler.valor 
         FROM alquiler INNER JOIN peliculas ON(peliculas.idPelicula=alquiler.idPelicula) 
         INNER JOIN clientes ON(clientes.idCliente=alquiler.idCliente) 
-        WHERE clientes.nombreC LIKE "%'.$valor .'" OR peliculas.nombre LIKE "'.$valor .'"
+        WHERE clientes.nombreC LIKE "%'.$valor .'%" OR peliculas.nombre LIKE "%'.$valor .'%"
         ');
         return $this->respuesta=$this->bd->obtener_datos();
     }
