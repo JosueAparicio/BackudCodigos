@@ -33,6 +33,7 @@ var appBuscarClientes = new Vue({
                    
                 }
             },
+            
     created: function () {
     this.buscarCliente();
     }

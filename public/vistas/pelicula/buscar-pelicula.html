@@ -1,5 +1,5 @@
 <form method="POST" id="frm-buscar-pelicula">
-    <div class="card text-white bg-dark mb-3" style="max-width: 48rem;">
+    <div class="card text-white bg-dark mb-3" style="max-width: 70rem;">
         <div class="car-header">
             BUSCAR PELICULAS
 
@@ -23,15 +23,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="pelicula in mispeliculas" :key="pelicula.id_pelicula"
-                        v-on:click="modificarPelicula(pelicula)">
-                        <td>{{ pelicula.descripcion }}</td>
+                    <tr v-for="pelicula in mispeliculas" :key="pelicula.id_pelicula">
+                        <td>{{ pelicula.nombre }}</td>
                         <td>{{ pelicula.sinopsis }}</td>
                         <td>{{ pelicula.genero }}</td>
                         <td>{{ pelicula.duracion }}</td>
+
                         <td>
-                            <input v-on:click="eliminarPelicula(pelicula.idPelicula)" type="button"
-                                class="btn btn-outline-danger text-white" value="del">
+                            <input v-on:click="eliminarPelicula(pelicula.idPelicula)" type="button" class="btn btn-outline-danger text-white" value="Delete">
+                            <input v-on:click="modificarPelicula(pelicula)" data-dismiss="modal" type="button" class="btn btn-outline-warning text-white" value="Update">
                         </td>
                     </tr>
                 </tbody>

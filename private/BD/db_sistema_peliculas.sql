@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-05-2020 a las 07:20:16
+-- Tiempo de generación: 04-05-2020 a las 04:26:00
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.2
 
@@ -32,7 +32,7 @@ CREATE TABLE `alquiler` (
   `idAlquiler` int(10) NOT NULL,
   `idCliente` int(10) NOT NULL,
   `idPelicula` int(10) NOT NULL,
-  `fechaPrestamo` date NOT NULL,
+  `fechaPrestamo` datetime NOT NULL,
   `fechaDevolucion` date NOT NULL,
   `valor` char(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -42,7 +42,9 @@ CREATE TABLE `alquiler` (
 --
 
 INSERT INTO `alquiler` (`idAlquiler`, `idCliente`, `idPelicula`, `fechaPrestamo`, `fechaDevolucion`, `valor`) VALUES
-(1, 1, 1, '2020-02-05', '2020-02-15', '$10');
+(1, 1, 1, '2020-05-03 00:00:00', '2020-02-15', '25'),
+(10, 3, 5, '2020-05-03 00:00:00', '2020-05-03', '10.00'),
+(11, 2, 3, '2020-05-03 00:00:00', '2020-05-03', '5.00');
 
 -- --------------------------------------------------------
 
@@ -52,7 +54,7 @@ INSERT INTO `alquiler` (`idAlquiler`, `idCliente`, `idPelicula`, `fechaPrestamo`
 
 CREATE TABLE `clientes` (
   `idCliente` int(10) NOT NULL,
-  `nombre` char(30) COLLATE utf8_spanish2_ci NOT NULL,
+  `nombreC` char(30) COLLATE utf8_spanish2_ci NOT NULL,
   `direccion` char(50) COLLATE utf8_spanish2_ci NOT NULL,
   `telefono` char(9) COLLATE utf8_spanish2_ci NOT NULL,
   `dui` char(9) COLLATE utf8_spanish2_ci NOT NULL
@@ -62,8 +64,10 @@ CREATE TABLE `clientes` (
 -- Volcado de datos para la tabla `clientes`
 --
 
-INSERT INTO `clientes` (`idCliente`, `nombre`, `direccion`, `telefono`, `dui`) VALUES
-(1, 'Douglas', 'Usulutan', '7487-9852', '0245789-9');
+INSERT INTO `clientes` (`idCliente`, `nombreC`, `direccion`, `telefono`, `dui`) VALUES
+(1, 'Douglas', 'Usulutan', '7487-9852', '0245789-9'),
+(2, 'Josue', 'Jiquilisco', '7908-4569', '1109789-1'),
+(3, 'Carlos', 'Jiquilisco', '8973-0978', '8756542-0');
 
 -- --------------------------------------------------------
 
@@ -74,7 +78,6 @@ INSERT INTO `clientes` (`idCliente`, `nombre`, `direccion`, `telefono`, `dui`) V
 CREATE TABLE `peliculas` (
   `idPelicula` int(10) NOT NULL,
   `nombre` char(50) COLLATE utf8_spanish2_ci NOT NULL,
-  `descripcion` char(50) COLLATE utf8_spanish2_ci NOT NULL,
   `sinopsis` char(75) COLLATE utf8_spanish2_ci NOT NULL,
   `genero` char(50) COLLATE utf8_spanish2_ci NOT NULL,
   `duracion` char(15) COLLATE utf8_spanish2_ci NOT NULL
@@ -84,8 +87,10 @@ CREATE TABLE `peliculas` (
 -- Volcado de datos para la tabla `peliculas`
 --
 
-INSERT INTO `peliculas` (`idPelicula`, `nombre`, `descripcion`, `sinopsis`, `genero`, `duracion`) VALUES
-(1, 'Avengers', 'Cast: Iron Man: Rober Downey JR', 'Un Grupo de Heroes salvan New York', 'Accion, Ciencia Ficcion', '2:05:20');
+INSERT INTO `peliculas` (`idPelicula`, `nombre`, `sinopsis`, `genero`, `duracion`) VALUES
+(1, 'Avengers', 'Un Grupo de Heroes salvan New York', 'Accion, Ciencia Ficcion', '2:05:20'),
+(3, 'Fast and Furius', 'Toreto maneja a lo loco GG', 'Accion', '2:05:02'),
+(5, 'Avatar', 'Un mundo de fantasia en conflicto con la raza humana', 'Accion, Aventura', '2:30:09');
 
 --
 -- Índices para tablas volcadas
@@ -117,19 +122,19 @@ ALTER TABLE `peliculas`
 -- AUTO_INCREMENT de la tabla `alquiler`
 --
 ALTER TABLE `alquiler`
-  MODIFY `idAlquiler` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idAlquiler` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `idCliente` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idCliente` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `peliculas`
 --
 ALTER TABLE `peliculas`
-  MODIFY `idPelicula` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idPelicula` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

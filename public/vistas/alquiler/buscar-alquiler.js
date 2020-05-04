@@ -1,32 +1,33 @@
-var appBuscarMateria = new Vue({
+var appBuscarAlquiler = new Vue({
     el: '#frm-buscar-alquiler',
     data: {
-        mismaterias: [],
+        misalquileres: [],
         valor: ''
     },
     methods: {
-        buscarMateria: function () {
-            fetch(`private/modulos/materias/procesos.php?proceso=buscarMateria&materia=${this.valor}`).then(resp => resp.json()).then(resp => {
-                this.mismaterias = resp;
+        buscarAlquiler: function () {
+            fetch(`private/modulos/alquiler/procesos.php?proceso=buscarAlquiler&alquiler=${this.valor}`).then(resp => resp.json()).then(resp => {
+                this.misalquileres = resp;
             });
         },
-        modificarMateria: function (materia) {
-            appmateria.materia = materia;
-            appmateria.materia.accion = 'modificar';
+        modificarAlquiler: function (alquiler) {
+            appAlquiler.Alquiler = alquiler;
+            appAlquiler.Alquiler.accion = 'modificar';
         },
-        eliminarMateria: function (idMateria) {
-            let dialog = document.getElementById("dialogMaterias");
+        eliminarAlquiler: function (idAlquiler) {
+            let dialog = document.getElementById("dialogAlquiler");
             dialog.close();
             dialog.showModal();
 
-            $(`#btnCancelarMateria`).click(e => {
+            $(`#btnCancelarAlquiler`).click(e => {
                 dialog.close();
             });
 
-            $(`#btnConfirmarMateria`).click(e => {
-                fetch(`private/modulos/materias/procesos.php?proceso=eliminarMateria&materia=${idMateria}`).then(resp => resp.json()).then(resp => {
+            $(`#btnConfirmarAlquiler`).click(e => {
+                fetch(`private/modulos/alquiler/procesos.php?proceso=eliminarAlquiler&alquiler=${idAlquiler}`).then(resp => resp.json()).then(resp => {
                     //console.log(resp)
-                    this.buscarMateria();
+                    this.buscarAlquiler();
+                    
                 });
                 dialog.close();
             });
@@ -34,6 +35,6 @@ var appBuscarMateria = new Vue({
         }
     },
     created: function () {
-        this.buscarMateria();
+        this.buscarAlquiler();
     }
 });

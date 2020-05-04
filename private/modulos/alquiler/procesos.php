@@ -36,7 +36,6 @@ class alquiler{
         }
         if(empty($this->datos['fechaPrestamo'])){
             $this->respuesta['msg']='Por Favor Ingrese la Fecha de Prestamo del alquiler';
-
         }
         $this->almacenar_alquiler();
     }
@@ -54,7 +53,8 @@ class alquiler{
                     )
                 ');
                 $this->respuesta['msg']='Registro Insertado con Exito';
-            }else if($this->datos['accion']==='modificar'){
+            }
+            else if($this->datos['accion']==='modificar'){
                 $this->bd->consultas('
                 UPDATE alquiler SET 
                 idCliente= "'. $this->datos['idCliente'].'",
@@ -71,17 +71,16 @@ class alquiler{
 
     public function buscarAlquiler($valor=''){
         $this->bd->consultas('
-            SELECT cl.descripcion, pe.nombre, al.fechaPrestamo, al.fechaDevolucion, al.valor
-            FROM alquiler al, clientes cl, peliculas pe
-            WHERE al.idCliente=cl.idCliente AND al.idPelicula=pe.idPelicula AND
-            cl.nombre LIKE "%'.$valor.'%" OR pe.nombre LIKE "%'.$valor.'%"
+        SELECT alquiler.idAlquiler, clientes.nombreC, peliculas.nombre, alquiler.fechaPrestamo, alquiler.fechaDevolucion, alquiler.valor 
+        FROM alquiler INNER JOIN peliculas ON(peliculas.idPelicula=alquiler.idPelicula) 
+        INNER JOIN clientes ON(clientes.idCliente=alquiler.idCliente) 
+        WHERE clientes.nombreC LIKE "%'.$valor .'" OR peliculas.nombre LIKE "'.$valor .'"
         ');
         return $this->respuesta=$this->bd->obtener_datos();
     }
 
     public function eliminarAlquiler($idAlquiler=''){
-        $this->bd->consultas('
-        DELETE alquiler 
+        $this->bd->consultas(' DELETE alquiler
         FROM alquiler
         WHERE alquiler.idAlquiler="'.$idAlquiler.'"
         ');
@@ -90,17 +89,31 @@ class alquiler{
 
 
     public function traer_datos_clientes(){
-        $this->db->consultas('SELECT * FROM clientes');
-        $Clientes = $this->db->obtener_data();
+        $this->bd->consultas('SELECT * FROM clientes');
+        $Clientes = $this->bd->obtener_datos();
         $imprimirClientes = [];
         $imprimirClientesIDs = [];
         for ($i=0; $i < count($Clientes); $i++) { 
-            $imprimirClientes[] = $Clientes[$i]['nombre'];
+            $imprimirClientes[] = $Clientes[$i]['nombreC'];
             $imprimirClientesIDs[] = $Clientes[$i]['idCliente'];
         }
         // echo json_encode($imprimirAgregarServicios);
 
         return $this->respuesta = ['Clientes'=>$imprimirClientes, 'ClientesID'=>$imprimirClientesIDs ];//array de php en v7+
+    }
+
+    public function traer_datos_peliculas(){
+        $this->bd->consultas('SELECT * FROM peliculas');
+        $Peliculas = $this->bd->obtener_datos();
+        $imprimirPeliculas = [];
+        $imprimirPeliculasIDs = [];
+        for ($i=0; $i < count($Peliculas); $i++) { 
+            $imprimirPeliculas[] = $Peliculas[$i]['nombre'];
+            $imprimirPeliculasIDs[] = $Peliculas[$i]['idPelicula'];
+        }
+        // echo json_encode($imprimirAgregarServicios);
+
+        return $this->respuesta = ['Peliculas'=>$imprimirPeliculas, 'PeliculasID'=>$imprimirPeliculasIDs ];//array de php en v7+
     }
 }
 

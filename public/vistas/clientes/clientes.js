@@ -4,7 +4,7 @@ var appcliente = new Vue({
         cliente: {
             idCliente: 0,
             accion: 'nuevo',
-            nombre: '',
+            nombreC: '',
             direccion: '',
             telefono: '',
             dui: '',
@@ -20,7 +20,7 @@ var appcliente = new Vue({
         },
         limpiarCliente: function(){
             this.cliente.idCliente = 0;
-            this.cliente.nombre = '';
+            this.cliente.nombreC = '';
             this.cliente.direccion = '';
             this.cliente.telefono = '';
             this.cliente.accion = 'nuevo';

@@ -1,51 +1,57 @@
 <form v-on:submit.prevent="guardarAlquiler" data-accion="nuevo" data-idalquiler='' id="frm-alquiler" method="POST">
-    <div class="card text-white bg-dark mb-3" style="max-width: 24rem;">
+    <div class="card text-white bg-dark mb-3" style="max-width: 48rrem;">
 
         <div class="card-header">
-            MANTENIMIENTO DE ALQUILERES
+           MANTENIMIENTO ALQUILERES
 
             <button type="button" id="btn-close-alquiler" class="close" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
 
-        <div class="row p-2">
-            <div class="col-4">
-                CLIENTES
-            </div>
-            <div class="col-8">
-                <v-select v-model="Alquiler.Cliente" :options="Cliente"></v-select>
+        <div class="row row-cols-1 p-2">
+            <div class="row-col">
+                <div class="col">
+                    CLIENTE
+                </div>
+                 <div class="col">
+                    <v-select v-model="Alquiler.idCliente" :options="Cliente"></v-select>
+                 </div>
             </div>
         </div>
 
-            <div class="row p-2">
-                <div class="col-4">
-                    PELICULAS
+            <div class="row row-cols-1 p-2">
+                <div class="row-col">
+                    <div class="col-4">
+                        PELICULA
+                    </div>
+               
+                <div class="col">
+                    <v-select v-model="Alquiler.idPelicula" :options="Pelis"></v-select>
                 </div>
-                <div class="col-8">
-                    <v-select v-model="Alquiler.Pelicula" :options="Pelicula"></v-select>
-                </div>
+                 </div>
             </div>
 
-            <div class="row row-cols-1">
+
+            <div class="row row-cols-1 p-2">
                 <div class="row-col">
                     <div class="col">
-                        F Devolucion:
+                        Fecha Devolucion:
                     </div>
                     <div class="col">
-                        <input type="date" required v-model="Alquiler.Fdevolucion" 
+                        <input type="date" required v-model="Alquiler.fechaDevolucion" 
                             class="form-control">
                     </div>
                 </div>
             </div>
 
-            <div class="row row-cols-1">
+            <div class="row row-cols-1 p-2">
                 <div class="row-col">
                     <div class="col">
                         $ Valor USD:
                     </div>
                     <div class="col">
-                        <input type="text" required v-model="Alquiler.valor" placeholder="2" 
+                        <input type="text" required v-model="Alquiler.valor" placeholder="Ingrese valor del aqluiler" 
                             class="form-control">
                     </div>
                 </div>
@@ -54,11 +60,11 @@
             <div class="rows row-cols-1 p-2">
                 <div class="row-col text-center">
                     <div class="col">
-                        <input type="submit" id="btnGuardarMateria" class="btn btn-outline-primary text-white"
+                        <input type="submit" id="btnGuardarAlquiler" class="btn btn-outline-primary text-white"
                             value="GUARDAR">
                         <input type="reset" id="" class="btn btn-outline-warning text-white" value="LIMPIAR">
-                        <input type="button" class="btn btn-outline-success mostrar-buscar-materias text-white"
-                            data-modulo="materias" data-form="buscar-materias" value="Buscar">
+                        <input type="button" class="btn btn-outline-success mostrar-buscar-alquiler text-white"
+                            data-modulo="alquiler" data-form="buscar-alquiler" value="Buscar">
                     </div>
                 </div>
             </div>
@@ -70,7 +76,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+   
     </div>
 </form>
 <script src="public/vistas/alquiler/alquiler.js"></script>

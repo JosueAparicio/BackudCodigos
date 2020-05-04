@@ -23,10 +23,9 @@
                         <th> </th>
                     </tr>
                 </thead>
-                <tbody>
                     <tbody>
                         <tr v-for="customer in misclientes" :key="customer.idCliente">
-                            <td>{{ customer.nombre }}</td>
+                            <td>{{ customer.nombreC }}</td>
                             <td>{{ customer.direccion }}</td>
                             <td>{{ customer.telefono }}</td>
                             <td>{{ customer.dui }}</td>
@@ -37,6 +36,7 @@
                             </td>
                         </tr>
                     </tbody>
+                    
             </table>
         </div>
     </div>

@@ -26,8 +26,8 @@ class peliculas{
     }
 
     private function validar_datos(){
-        if(empty($this->datos['descripcion'])){
-            $this->respuesta['msg']='Por Favor Ingrese el descripcion del peliculas';
+        if(empty($this->datos['nombre'])){
+            $this->respuesta['msg']='Por Favor Ingrese el nombre del peliculas';
         
         }
         if(empty($this->datos['genero'])){
@@ -45,8 +45,8 @@ class peliculas{
         if($this->respuesta['msg']==='correcto'){
             if($this->datos['accion']==="nuevo"){
                 $this->bd->consultas('
-                INSERT INTO peliculas (descripcion,sinopsis,genero,duracion) VALUES(
-                    "'. $this->datos['descripcion'] .'",
+                INSERT INTO peliculas (nombre,sinopsis,genero,duracion) VALUES(
+                    "'. $this->datos['nombre'] .'",
                     "'. $this->datos['sinopsis'] .'",
                     "'. $this->datos['genero'] .'",
                     "'. $this->datos['duracion'] .'"
@@ -56,7 +56,7 @@ class peliculas{
             }else if($this->datos['accion']==='modificar'){
                 $this->bd->consultas('
                 UPDATE peliculas SET
-                descripcion= "'. $this->datos['descripcion'].'",
+                nombre= "'. $this->datos['nombre'].'",
                 sinopsis= "'. $this->datos['sinopsis'].'",
                 genero= "'.$this->datos['genero'].'",
                 duracion= "'.$this->datos['duracion'].'"
@@ -69,9 +69,9 @@ class peliculas{
 
     public function buscarPelicula($valor=''){
         $this->bd->consultas('
-        SELECT peliculas.idPelicula, peliculas.descripcion, peliculas.sinopsis, peliculas.genero, peliculas.duracion
+        SELECT peliculas.idPelicula, peliculas.nombre, peliculas.sinopsis, peliculas.genero, peliculas.duracion
         FROM peliculas
-        WHERE peliculas.descripcion LIKE "%'.$valor.'%" OR peliculas.genero LIKE "%'.$valor.'%" OR peliculas.duracion LIKE "%'.$valor.'%"
+        WHERE peliculas.nombre LIKE "%'.$valor.'%" OR peliculas.genero LIKE "%'.$valor.'%" OR peliculas.duracion LIKE "%'.$valor.'%"
         ');
         return $this->respuesta=$this->bd->obtener_datos();
     }

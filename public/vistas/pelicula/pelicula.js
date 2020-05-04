@@ -4,7 +4,7 @@ var apppelicula = new Vue({
         pelicula: {
             id_pelicula: 0,
             accion: 'nuevo',
-            descripcion: '',
+            nombre: '',
             sinopsis: '',
             genero: '',
             duracion: '',
@@ -16,7 +16,7 @@ var apppelicula = new Vue({
             fetch(`private/modulos/peliculas/procesos.php?proceso=recibirDatos&peliculas=${JSON.stringify(this.pelicula)}`).then(resp => resp.json()).then(resp => {
                 this.pelicula.msg = resp.msg;
                 this.pelicula.id_pelicula = 0;
-                this.pelicula.descripcion = '';
+                this.pelicula.nombre = '';
                 this.pelicula.sinopsis = '';
                 this.pelicula.genero = '';
                 this.pelicula.duracion = '';
