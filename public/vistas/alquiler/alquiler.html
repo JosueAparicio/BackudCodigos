@@ -15,7 +15,7 @@
                     CLIENTE
                 </div>
                  <div class="col">
-                    <v-select v-model="Alquiler.idCliente" :options="Cliente"></v-select>
+                    <v-select v-model="Alquiler.nombreC" :options="Cliente"></v-select>
                  </div>
             </div>
         </div>
@@ -27,7 +27,7 @@
                     </div>
                
                 <div class="col">
-                    <v-select v-model="Alquiler.idPelicula" :options="Pelis"></v-select>
+                    <v-select v-model="Alquiler.nombre" :options="Pelis"></v-select>
                 </div>
                  </div>
             </div>
@@ -51,7 +51,7 @@
                         $ Valor USD:
                     </div>
                     <div class="col">
-                        <input type="text" required v-model="Alquiler.valor" placeholder="Ingrese valor del aqluiler" 
+                        <input type="text" required v-model="Alquiler.valor" placeholder="Ingrese valor del alquiler" 
                             class="form-control">
                     </div>
                 </div>

@@ -6,8 +6,8 @@ var appAlquiler = new Vue({
         Alquiler: {
             idalquiler: 0,
             accion: 'nuevo',
-            idCliente: '',
-            idPelicula: '',
+            nombreC: '',
+            nombre: '',
             fechaPrestamo: '',
             fechaDevolucion: '',
             valor: '',
@@ -25,14 +25,14 @@ var appAlquiler = new Vue({
         guardarAlquiler: function () {
 
             for (let index = 0; index < this.Pelis.length; index++) {
-                if (this.Pelis[index] == this.Alquiler.idPelicula) {
-                    this.Alquiler.idPelicula = this.PelisId[index];
+                if (this.Pelis[index] == this.Alquiler.nombre) {
+                    this.Alquiler.nombre = this.PelisId[index];
                 }
             }
 
             for (let index = 0; index < this.Cliente.length; index++) {
-                if (this.Cliente[index] == this.Alquiler.idCliente) {
-                    this.Alquiler.idCliente = this.ClienteId[index];
+                if (this.Cliente[index] == this.Alquiler.nombreC) {
+                    this.Alquiler.nombreC = this.ClienteId[index];
                 }
             }
 
@@ -43,8 +43,8 @@ var appAlquiler = new Vue({
             fetch(`private/modulos/alquiler/procesos.php?proceso=recibirDatos&alquiler=${JSON.stringify(this.Alquiler)}`).then(resp => resp.json()).then(resp => {
                 this.Alquiler.msg = resp.msg;
                 this.Alquiler.idalquiler = 0;
-                this.Alquiler.idCliente = '';
-                this.Alquiler.idPelicula = '';
+                this.Alquiler.nombreC = '';
+                this.Alquiler.nombre = '';
                 this.Alquiler.fechaPrestamo = '';
                 this.Alquiler.fechaDevolucion = '';
                 this.Alquiler.accion = 'nuevo';

@@ -26,12 +26,12 @@ class alquiler{
     }
 
     private function validar_datos(){
-        if(empty($this->datos['idCliente'])){
-            $this->respuesta['msg']='Por Favor Ingrese el idCliente del alquiler';
+        if(empty($this->datos['nombreC'])){
+            $this->respuesta['msg']='Por Favor Ingrese el cliente del alquiler';
         
         }
-        if(empty($this->datos['idPelicula'])){
-            $this->respuesta['msg']='Por Favor Ingrese el idPelicula del alquiler';
+        if(empty($this->datos['nombre'])){
+            $this->respuesta['msg']='Por Favor Ingrese la Pelicula del alquiler';
 
         }
         if(empty($this->datos['fechaPrestamo'])){
@@ -45,8 +45,8 @@ class alquiler{
             if($this->datos['accion']==="nuevo"){
                 $this->bd->consultas('
                 INSERT INTO alquiler (idCliente, idPelicula, fechaPrestamo, fechaDevolucion, valor) VALUES(
-                    "'. $this->datos['idCliente'] .'",
-                    "'. $this->datos['idPelicula'] .'",
+                    "'. $this->datos['nombreC'] .'",
+                    "'. $this->datos['nombre'] .'",
                     "'. $this->datos['fechaPrestamo'] .'",
                     "'. $this->datos['fechaDevolucion'] .'",
                     "'. $this->datos['valor'] .'"
@@ -57,8 +57,8 @@ class alquiler{
             else if($this->datos['accion']==='modificar'){
                 $this->bd->consultas('
                 UPDATE alquiler SET 
-                idCliente= "'. $this->datos['idCliente'].'",
-                idPelicula= "'. $this->datos['idPelicula'].'",
+                idCliente= "'. $this->datos['nombreC'].'",
+                idPelicula= "'. $this->datos['nombre'].'",
                 fechaPrestamo= "'.$this->datos['fechaPrestamo'].'",
                 fechaDevolucion= "'.$this->datos['fechaDevolucion'].'",
                 valor= "'.$this->datos['valor'].'"
